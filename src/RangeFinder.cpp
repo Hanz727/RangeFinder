@@ -17,8 +17,14 @@ RangeFinder::RangeFinder(const uint8_t* sensors, const uint8_t count, const uint
     init(sensors, count, sensorType);
 }
 
+void RangeFinder::setTempC(double tempCelcius) {
+   m_tempC = tempCelcius; 
+}
+
 double RangeFinder::usToCm(unsigned long microseconds) {
-    return microseconds / 29. / 2.;
+    double v = 331.3 + 0.606 * m_tempC;
+    double speedOfSoundPerMicrosecond = v * 0.0001; // cm/µs
+    return (microseconds * speedOfSoundPerMicrosecond) / 2.;
 }
 
 void RangeFinder::update() {

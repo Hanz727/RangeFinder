@@ -43,3 +43,7 @@ This module is responsible for interfacing with multiple ultrasonic sensors in a
     }
 
 ```
+
+## Tips
+
+You can set the temperature to improve rangeFinder accuracy with ```rangeFinder.setTempC(double tempCelcius)```
