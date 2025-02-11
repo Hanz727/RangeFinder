@@ -1,3 +1,4 @@
+
 #include <Arduino.h>
 #include "RangeFinder.h"
 
@@ -7,6 +8,15 @@ void RangeFinder::init(const uint8_t* sensors, const uint8_t count, const uint8_
     m_sensor_type = sensorType;
 
     m_ranges = new double[count];
+	
+	if (m_sensor_type == ULTRASONIC_HC_SR04) {
+		for (int i = 0; i < count; i++) {
+			uint8_t trigPin = m_sensors[2*i];
+			uint8_t echoPin = m_sensors[2*i+1];
+			pinMode(trigPin, OUTPUT);
+			pinMode(echoPin, INPUT);
+		}
+	}
 }
 
 RangeFinder::~RangeFinder() {
@@ -48,7 +58,7 @@ void RangeFinder::update() {
         } else if (m_sensor_type == ULTRASONIC_HC_SR04) {
             uint8_t trigPin = m_sensors[2*i];
             uint8_t echoPin = m_sensors[2*i+1];
-
+			
             digitalWrite(trigPin, LOW);
             delayMicroseconds(2);
             digitalWrite(trigPin, HIGH);
@@ -64,3 +74,4 @@ void RangeFinder::update() {
 double RangeFinder::getDistance(const uint8_t sensor) {
     return m_ranges[sensor];
 }
+
