@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include "RangeFinder.h"
 
 void RangeFinder::init(const uint8_t* sensors, const uint8_t count, const uint8_t sensorType) {
