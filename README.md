@@ -5,7 +5,7 @@ This module is responsible for interfacing with multiple ultrasonic sensors in a
 ```c
     #include "RangeFinder.h"
     
-    const int sensors = {6,7,8}; // PING pins, one pin for each sensor
+    const uint8_t sensors[] = {6,7,8}; // PING pins, one pin for each sensor
    
     RangeFinder rangeFinder;
     
@@ -22,11 +22,11 @@ This module is responsible for interfacing with multiple ultrasonic sensors in a
     }
 ```
 
-### HR-SR04 Ultrasonic Sensor
+### HC-SR04 Ultrasonic Sensor
 ```c
     #include "RangeFinder.h"
     
-    const int sensors = {6,7,8,9,10,11}; // ECHO,TRIG pin pairs, two pins for each sensor
+    const uint8_t sensors[] = {6,7,8,9,10,11}; // ECHO,TRIG pin pairs, two pins for each sensor
    
     RangeFinder rangeFinder;
     
@@ -37,7 +37,7 @@ This module is responsible for interfacing with multiple ultrasonic sensors in a
     void update() {
         rangeFinder.update(); // updates the ranges for all sensors
         
-        // Gets measured distance from sensor on pin 6 in cm
+        // Gets measured distance from sensor on pin 6/7 in cm
         double dist0 = rangeFinder.getDistance(0);
         
     }
