@@ -1,24 +1,6 @@
 #pragma once
 
-#if defined(__has_include) && __has_include(<Arduino.h>)
-    #include <Arduino.h>
-#else
-    // Some defines to make the LSP happy, this is ignored on the arduino boards
-    void delayMicroseconds(int x);
-    void digitalWrite(int a, int b);
-    #define OUTPUT 1
-    #define INPUT  0
-    
-    #define LOW 0
-    #define HIGH 1
-    
-    void pinMode(int a, int b);
-    int pulseIn(int a, int b);
-#endif
-
-#if defined(__has_include) && __has_include(<stdint.h>)
-    #include <stdint.h>
-#endif
+#include <Arduino.h>
 
 #define ULTRASONIC_PING 0
 #define ULTRASONIC_HC_SR04 1
