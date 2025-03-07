@@ -51,7 +51,9 @@ void RangeFinder::update() {
 
             pinMode(pin, INPUT);
 
-            unsigned long duration = pulseIn(pin, HIGH);
+            unsigned long duration = pulseIn(pin, HIGH, 20000);
+            if (!duration)
+                duration = 20000;
             m_ranges[i] = usToCm(duration);
         } else if (m_sensor_type == ULTRASONIC_HC_SR04) {
             uint8_t trigPin = m_sensors[2*i];
@@ -63,7 +65,9 @@ void RangeFinder::update() {
             delayMicroseconds(10);
             digitalWrite(trigPin, LOW);
 
-            unsigned long duration = pulseIn(echoPin, HIGH);
+            unsigned long duration = pulseIn(echoPin, HIGH, 20000);
+            if (!duration)
+                duration = 20000;
             m_ranges[i] = usToCm(duration);
         }
     }
