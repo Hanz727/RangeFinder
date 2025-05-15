@@ -70,6 +70,7 @@ void RangeFinder::update() {
                 duration = 20000;
             m_ranges[i] = usToCm(duration);
         }
+        delay(20); // avoid echo
     }
 }
 
