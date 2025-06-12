@@ -65,9 +65,9 @@ void RangeFinder::update() {
             delayMicroseconds(10);
             digitalWrite(trigPin, LOW);
 
-            unsigned long duration = pulseIn(echoPin, HIGH, 1500);
+            unsigned long duration = pulseIn(echoPin, HIGH, 5000);
             if (!duration)
-                duration = 1500;
+                duration = 5000;
             m_ranges[i] = usToCm(duration);
         }
         delay(20); // avoid echo
